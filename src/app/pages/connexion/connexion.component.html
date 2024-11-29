@@ -1,20 +1,17 @@
-<div class="login-container">
-    <div class="login-card">
-        <h2>Connexion</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" formControlName="email" placeholder="Votre email">
-            </div>
+<form [formGroup]="formulaire" (ngSubmit)="onConnexion()">
 
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" formControlName="password" placeholder="Votre mot de passe">
-            </div>
+  <mat-form-field>
+    <mat-label>Pseudo</mat-label>
+    <input formControlName="pseudo" matInput placeholder="Ex. totoDu57">
+    <mat-error>Le pseudo est obligatoire</mat-error>
+  </mat-form-field>
 
-            <button type="submit" [disabled]="!loginForm.valid">
-                Se connecter
-            </button>
-        </form>
-    </div>
-</div>
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input formControlName="motDePasse" matInput type="password">
+    <mat-error>Le mot de passe est obligatoire</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button>Se connecter</button>
+
+</form>

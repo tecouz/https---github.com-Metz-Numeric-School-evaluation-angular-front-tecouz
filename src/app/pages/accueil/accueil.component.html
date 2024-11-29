@@ -1,33 +1,36 @@
-<div class="accueil-container">
-    <header class="hero">
-      <h1>Bienvenue sur TicketManager</h1>
-      <p>Gérez vos tickets simplement et efficacement</p>
-      <button class="login-btn" routerLink="/connexion">Se connecter</button>
-    </header>
+<h1>Gestion des Tickets</h1>
 
+<button mat-raised-button routerLink="/nouveau-ticket" color="primary">
+  <mat-icon>add</mat-icon>
+  Créer un nouveau ticket
+</button>
 
-  
-    <section class="features">
-      <div class="feature-card">
-        <i class="fas fa-ticket-alt"></i>
-        <h3>Créer un ticket</h3>
-        <p>Soumettez rapidement vos demandes</p>
-        <button routerLink="/tickets/new">Nouveau ticket</button>
-      </div>
-  
-      <div class="feature-card">
-        <i class="fas fa-list"></i>
-        <h3>Mes tickets</h3>
-        <p>Consultez vos tickets en cours</p>
-        <button routerLink="/tickets">Voir mes tickets</button>
-      </div>
-  
-      <div class="feature-card">
-        <i class="fas fa-chart-line"></i>
-        <h3>Tableau de bord</h3>
-        <p>Suivez l'état de vos demandes</p>
-        <button routerLink="/dashboard">Accéder</button>
-      </div>
-    </section>
+@for (ticket of tickets; track $index) {
+<div class="ticket" [class.ticket-closed]="ticket.status === 'closed'">
+  <div class="ticket-header">
+    <span class="ticket-id">#{{ticket.id}}</span>
+    <span class="ticket-status">{{ticket.status}}</span>
   </div>
-  
+
+  <div class="ticket-content">
+    <h3>{{ticket.title}}</h3>
+    <p>{{ticket.description}}</p>
+    <div class="ticket-meta">
+      <span>Assigné à: {{ticket.assignee}}</span>
+      <span>Créé le: {{ticket.created_at | date:"dd/MM/yy à HH:mm"}}</span>
+    </div>
+  </div>
+
+  <div class="ticket-actions">
+    <button mat-icon-button (click)="onStatusChange(ticket)" [matTooltip]="ticket.status === 'open' ? 'Fermer' : 'Réouvrir'">
+      <mat-icon>{{ticket.status === 'open' ? 'check_circle' : 'radio_button_unchecked'}}</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/edit-ticket/{{ticket.id}}" matTooltip="Modifier">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDeleteTicket(ticket.id)" matTooltip="Supprimer">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+}

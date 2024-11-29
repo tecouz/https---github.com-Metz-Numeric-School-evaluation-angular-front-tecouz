@@ -1,0 +1,23 @@
+nav {
+  ul {
+    display: flex;
+
+    li {
+      list-style: none;
+      margin: 0 30px;
+
+      a {
+        text-decoration: none;
+        padding: 1em;
+        background-color: aliceblue;
+        border-radius: 15%;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover, &.page-actuelle {
+          background-color: #0eded7;
+        }
+      }
+    }
+  }
+}
