@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
-  imports: [],
   templateUrl: './accueil.component.html',
-  styleUrl: './accueil.component.scss'
+  styleUrls: ['./accueil.component.scss'],
+  standalone: true,
+  imports: [RouterModule]
 })
-export class AccueilComponent {
+export class AccueilComponent implements OnInit {
+  constructor() { }
 
+  ngOnInit(): void { }
 }

@@ -1,1 +1,33 @@
-<p>accueil works!</p>
+<div class="accueil-container">
+    <header class="hero">
+      <h1>Bienvenue sur TicketManager</h1>
+      <p>Gérez vos tickets simplement et efficacement</p>
+      <button class="login-btn" routerLink="/connexion">Se connecter</button>
+    </header>
+
+
+  
+    <section class="features">
+      <div class="feature-card">
+        <i class="fas fa-ticket-alt"></i>
+        <h3>Créer un ticket</h3>
+        <p>Soumettez rapidement vos demandes</p>
+        <button routerLink="/tickets/new">Nouveau ticket</button>
+      </div>
+  
+      <div class="feature-card">
+        <i class="fas fa-list"></i>
+        <h3>Mes tickets</h3>
+        <p>Consultez vos tickets en cours</p>
+        <button routerLink="/tickets">Voir mes tickets</button>
+      </div>
+  
+      <div class="feature-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Tableau de bord</h3>
+        <p>Suivez l'état de vos demandes</p>
+        <button routerLink="/dashboard">Accéder</button>
+      </div>
+    </section>
+  </div>
+  
