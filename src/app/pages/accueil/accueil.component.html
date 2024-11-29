@@ -5,7 +5,7 @@
   Créer un nouveau ticket
 </button>
 
-<div If="tickets.length > 0">
+<div>
   <h3>Liste des tickets</h3>
   <table>
     <thead>
@@ -14,21 +14,26 @@
         <th>Description</th>
         <th>Statut</th>
         <th>Assigné à</th>
+        <th @If(isAdminOrChef)>Actions</th>
+
       </tr>
     </thead>
     <tbody>
-      @for (ticket of tickets; track $index){
+      @for(ticket of tickets; track $index){
       <tr>
         <td>{{ ticket.title }}</td>
         <td>{{ ticket.description }}</td>
         <td>{{ ticket.closed_at }}</td>
         <td>{{ ticket.assignee }}</td>
+        <td @if(isAdminOrChef)>
+          <button mat-button (click)="onDeleteTicket(ticket.id)">Supprimer</button>
+        </td>
       </tr>
     }
     </tbody>
   </table>
 </div>
 
-<div If="tickets.length === 0">
+<div *ngIf="tickets.length < 0">
   <p>Aucun ticket trouvé.</p>
 </div>
