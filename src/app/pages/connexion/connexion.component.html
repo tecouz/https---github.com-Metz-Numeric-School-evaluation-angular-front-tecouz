@@ -2,16 +2,17 @@
 
   <mat-form-field>
     <mat-label>Pseudo</mat-label>
-    <input formControlName="pseudo" matInput placeholder="Ex. totoDu57">
-    <mat-error>Le pseudo est obligatoire</mat-error>
+    <input formControlName="username" matInput placeholder="Ex. totoDu57">
+    <mat-error If="formulaire.controls['username'].invalid">Le pseudo est obligatoire</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Mot de passe</mat-label>
-    <input formControlName="motDePasse" matInput type="password">
-    <mat-error>Le mot de passe est obligatoire</mat-error>
+    <input formControlName="password" matInput type="password">
+    <mat-error If="formulaire.controls['password'].invalid">Le mot de passe est obligatoire</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button>Se connecter</button>
+  <p If="errorMessage" style="color: red;">{{ errorMessage }}</p>
 
+  <button mat-raised-button type="submit">Se connecter</button>
 </form>

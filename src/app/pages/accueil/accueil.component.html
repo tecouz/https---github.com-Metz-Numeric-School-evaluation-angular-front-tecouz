@@ -5,32 +5,30 @@
   Créer un nouveau ticket
 </button>
 
-@for (ticket of tickets; track $index) {
-<div class="ticket" [class.ticket-closed]="ticket.status === 'closed'">
-  <div class="ticket-header">
-    <span class="ticket-id">#{{ticket.id}}</span>
-    <span class="ticket-status">{{ticket.status}}</span>
-  </div>
-
-  <div class="ticket-content">
-    <h3>{{ticket.title}}</h3>
-    <p>{{ticket.description}}</p>
-    <div class="ticket-meta">
-      <span>Assigné à: {{ticket.assignee}}</span>
-      <span>Créé le: {{ticket.created_at | date:"dd/MM/yy à HH:mm"}}</span>
-    </div>
-  </div>
-
-  <div class="ticket-actions">
-    <button mat-icon-button (click)="onStatusChange(ticket)" [matTooltip]="ticket.status === 'open' ? 'Fermer' : 'Réouvrir'">
-      <mat-icon>{{ticket.status === 'open' ? 'check_circle' : 'radio_button_unchecked'}}</mat-icon>
-    </button>
-    <button mat-icon-button routerLink="/edit-ticket/{{ticket.id}}" matTooltip="Modifier">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button (click)="onDeleteTicket(ticket.id)" matTooltip="Supprimer">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
+<div If="tickets.length > 0">
+  <h3>Liste des tickets</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Statut</th>
+        <th>Assigné à</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (ticket of tickets; track $index){
+      <tr>
+        <td>{{ ticket.title }}</td>
+        <td>{{ ticket.description }}</td>
+        <td>{{ ticket.closed_at }}</td>
+        <td>{{ ticket.assignee }}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
 </div>
-}
+
+<div If="tickets.length === 0">
+  <p>Aucun ticket trouvé.</p>
+</div>
